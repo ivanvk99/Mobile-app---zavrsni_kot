@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "253553030300",
+    "project_id": "travelcomp-6846d",
+    "storage_bucket": "travelcomp-6846d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253553030300:android:1e64a27d7a4e874fdaa959",
+        "android_client_info": {
+          "package_name": "com.example.travelcomp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253553030300-5iqc9p4cgmt98hhmu5so7317gf7rsd4i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDp1hF0vvGiwt3rc1jDbfJWGoTnyA30FJk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253553030300-5iqc9p4cgmt98hhmu5so7317gf7rsd4i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
