@@ -3,10 +3,8 @@ package com.example.travelcomp.firebase
 import android.app.Activity
 import android.util.Log
 import android.widget.Toast
-import com.example.travelcomp.activities.LogInActivity
-import com.example.travelcomp.activities.MainActivity
-import com.example.travelcomp.activities.MyProfileActivity
-import com.example.travelcomp.activities.SignUpActivity
+import com.example.travelcomp.activities.*
+import com.example.travelcomp.models.Board
 import com.example.travelcomp.models.User
 import com.example.travelcomp.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -25,6 +23,25 @@ class FirestoreClass {
             Log.e(activity.javaClass.simpleName, "error", e)
         }
 
+    }
+
+    fun createBoard(activity: CreateBoardActivity, board: Board){
+        mFireStore.collection(Constants.BOARDS)
+            .document()
+            .set(board, SetOptions.merge())
+            .addOnSuccessListener {
+                Log.e(activity.javaClass.simpleName, "Board created successfully")
+
+                Toast.makeText(activity, "Board created successfully", Toast.LENGTH_SHORT).show()
+
+                activity.boardCreatedSuccessfully()
+            }.addOnFailureListener {
+                exception ->
+                activity.hideProgressDialog()
+                Log.e(
+                    activity.javaClass.simpleName, "Error while creating a board", exception
+                )
+            }
     }
 
     fun updateUserProfileData(activity: MyProfileActivity, userHashMap: HashMap<String, Any>) {
