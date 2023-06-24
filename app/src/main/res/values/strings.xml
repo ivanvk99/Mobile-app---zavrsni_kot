@@ -27,4 +27,6 @@
     <string name="create">CREATE</string>
     <string name="board_name">Board Name</string>
 
+    <string name="no_travels_are_available">No Travels are available!!!</string>
+
 </resources>

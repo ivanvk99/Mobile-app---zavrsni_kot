@@ -44,6 +44,28 @@ class FirestoreClass {
             }
     }
 
+    fun getTravelsList(activity: MainActivity) {
+        mFireStore.collection(Constants.BOARDS)
+            .whereArrayContains("members", getCurrentUserId())
+            .get()
+            .addOnSuccessListener { documents ->
+                val boardList: ArrayList<Board> = ArrayList()
+                for (document in documents) {
+                    val board = document.toObject(Board::class.java)
+                    board?.documentId = document.id
+                    board?.let { boardList.add(it) }
+                }
+                Log.d(activity.javaClass.simpleName, "Number of boards: ${boardList.size}")
+                activity.populateTravelListToUI(boardList)
+            }
+            .addOnFailureListener { e ->
+                Log.e(activity.javaClass.simpleName, "Error while fetching boards", e)
+                // Handle failure
+            }
+    }
+
+
+
     fun updateUserProfileData(activity: MyProfileActivity, userHashMap: HashMap<String, Any>) {
         mFireStore.collection(Constants.USERS) // Collection Name
             .document(getCurrentUserId()) // Document ID
@@ -67,7 +89,7 @@ class FirestoreClass {
             }
     }
 
-    fun loadUserData(activity: Activity) {
+    fun loadUserData(activity: Activity, readTravelsList: Boolean = false) {
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
@@ -79,7 +101,7 @@ class FirestoreClass {
                         activity.signInSuccess(loggedInUser)
                     }
                     is MainActivity -> {
-                        activity.updateNavigationUserDetails(loggedInUser)
+                        activity.updateNavigationUserDetails(loggedInUser, readTravelsList)
                     }
                     is MyProfileActivity ->{
                         activity.setUserDataInUI(loggedInUser)

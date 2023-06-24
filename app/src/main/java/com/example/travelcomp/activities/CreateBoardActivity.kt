@@ -76,7 +76,7 @@ class CreateBoardActivity : BaseActivity(){
         val membersArrayList: ArrayList<String> = ArrayList()
         membersArrayList.add(getCurrentUserID())
 
-        var board = Board(
+        val board = Board(
             binding?.etBoardName?.text.toString(),
             mBoardImageURL,
             mUserName,
@@ -117,8 +117,9 @@ class CreateBoardActivity : BaseActivity(){
     }
 
 
-    fun boardCreatedSuccessfully(){
+    fun boardCreatedSuccessfully() {
         hideProgressDialog()
+        setResult(Activity.RESULT_OK)
         finish()
     }
 
