@@ -8,7 +8,12 @@ data class Board (
     val image: String = "",
     val createdBy: String = "",
     val members: ArrayList<String> = ArrayList(),
-    var documentId: String = ""
+    var documentId: String = "",
+    val date: String = "",
+    val description: String = "",
+    val city: String = ""
+
+
 
     ):Parcelable {
     constructor(parcel: Parcel) : this(
@@ -16,7 +21,11 @@ data class Board (
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.createStringArrayList()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readString()!!,
         parcel.readString()!!
+
     )
 
 
@@ -26,6 +35,9 @@ data class Board (
         parcel.writeString(createdBy)
         parcel.writeStringList(members)
         parcel.writeString(documentId)
+        parcel.writeString(date)
+        parcel.writeString(description)
+        parcel.writeString(city)
     }
 
     override fun describeContents(): Int {

@@ -1,28 +1,20 @@
 package com.example.travelcomp.activities
 
-import androidx.databinding.DataBindingUtil
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.provider.SyncStateContract
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.databinding.ViewDataBinding
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.travelcomp.R
 import com.example.travelcomp.adapters.StatusAdapter
 import com.example.travelcomp.databinding.ActivityMainBinding
-import com.example.travelcomp.databinding.MainContentBinding
 import com.example.travelcomp.databinding.NavHeaderMainBinding
 import com.example.travelcomp.firebase.FirestoreClass
 import com.example.travelcomp.models.Board
@@ -94,7 +86,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             adapter.setOnClickListener(object :
                 StatusAdapter.ItemClickListener {
                 override fun onClick(position: Int, model: Board) {
-                    val intent = Intent(this@MainActivity, TaskListActivity::class.java)
+                    val intent = Intent(this@MainActivity, BoardSeeActivity::class.java)
                     intent.putExtra(Constants.DOCUMENT_ID, model.documentId)
                     startActivity(intent)
                 }

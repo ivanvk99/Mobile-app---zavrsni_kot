@@ -25,6 +25,22 @@ class FirestoreClass {
 
     }
 
+    fun getBoardDetails(activity: BoardSeeActivity, documentId : String){
+        mFireStore.collection(Constants.BOARDS)
+            .document(documentId)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.i(activity.javaClass.simpleName, document.toString())
+
+                activity.travelDetails(document.toObject(Board::class.java)!!)
+            }
+
+            .addOnFailureListener { e ->
+                Log.e(activity.javaClass.simpleName, "Error while fetching boards", e)
+                // Handle failure
+            }
+    }
+
     fun createBoard(activity: CreateBoardActivity, board: Board){
         mFireStore.collection(Constants.BOARDS)
             .document()
