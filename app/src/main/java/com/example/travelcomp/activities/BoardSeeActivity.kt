@@ -1,8 +1,11 @@
 package com.example.travelcomp.activities
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.WindowInsets
 import android.view.WindowManager
 import com.bumptech.glide.Glide
@@ -16,6 +19,7 @@ import com.example.travelcomp.utils.Constants
 class BoardSeeActivity : BaseActivity() {
 
     private var binding: ActivityBoardSeeBinding? = null
+    private lateinit var mTravelDetail : Board
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +46,24 @@ class BoardSeeActivity : BaseActivity() {
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_members, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_members -> {
+                val intent = Intent(this, MembersActivity::class.java)
+                intent.putExtra(Constants.TRAVEL_DETAIL, mTravelDetail)
+                startActivity(intent)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
     private fun setupActionBar(title : String) {
 
         setSupportActionBar(binding?.toolbarTaskListActivity)
@@ -49,7 +71,7 @@ class BoardSeeActivity : BaseActivity() {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_white_color_back_24dp)
-            actionBar.title = title
+            actionBar.title = mTravelDetail.name
         }
 
         binding?.toolbarTaskListActivity?.setNavigationOnClickListener {
@@ -59,7 +81,7 @@ class BoardSeeActivity : BaseActivity() {
     fun travelDetails(board: Board){
         hideProgressDialog()
         setupActionBar(board.name)
-
+        mTravelDetail = board
         val userImage = binding?.ivBoardImage!!
 
         Glide

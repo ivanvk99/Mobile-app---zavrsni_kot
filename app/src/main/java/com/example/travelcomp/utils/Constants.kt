@@ -19,8 +19,9 @@ object Constants{
     const val MOBILE: String = "mobile"
     const val BOARDS: String = "boards"
     const val DOCUMENT_ID: String = "documentId"
-    const val DESCRIPTION: String = "description"
-    const val CITY: String = "city"
+    const val TRAVEL_DETAIL: String = "travel_detail"
+    const val ID: String = "id"
+    const val MEMBERS: String = "members"
 
     fun showImageChooser(activity: Activity){
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

@@ -62,7 +62,7 @@ class FirestoreClass {
 
     fun getTravelsList(activity: MainActivity) {
         mFireStore.collection(Constants.BOARDS)
-            .whereArrayContains("members", getCurrentUserId())
+            .whereArrayContains(Constants.MEMBERS, getCurrentUserId())
             .get()
             .addOnSuccessListener { documents ->
                 val boardList: ArrayList<Board> = ArrayList()
@@ -151,5 +151,30 @@ class FirestoreClass {
         }
         return currentUserID
     }
+
+    fun getOtherMembersListDetails(activity: MembersActivity, memberIds: ArrayList<String>) {
+        val db = FirebaseFirestore.getInstance()
+        val membersCollection = mFireStore.collection(Constants.USERS)
+        val membersList: ArrayList<User> = ArrayList()
+
+        membersCollection.whereIn(Constants.ID, memberIds)
+            .get()
+            .addOnSuccessListener { document ->
+                Log.e(activity.javaClass.simpleName, document.documents.toString())
+
+                for (i in document.documents) {
+                    // Convert all the document snapshot to the object using the data model class.
+                    val user = i.toObject(User::class.java)!!
+                    membersList.add(user)
+                }
+
+                activity.setupMembersList(membersList)
+            }
+            .addOnFailureListener { exception ->
+                Log.e(activity.javaClass.simpleName, "Error getting members list", exception)
+                // Handle failure
+            }
+    }
+
 
 }
