@@ -641,8 +641,8 @@ class CreateBoardActivity : BaseActivity() {
         fun onItemClick(dataItem: String)
     }
 
-    val API_KEY_PART_1 = "ALzaSyAzcfa-"
-    val API_KEY_PART_2 = "gLndXQqF6"
-    val API_KEY_PART_3 = "_Wp-eFX12Y"
-    val API_KEY_PART_4 = "CqBSIk5c"
+    val API_KEY_PART_1 = "AIzaSyDp1h"
+    val API_KEY_PART_2 = "F0vvGiwt3"
+    val API_KEY_PART_3 = "rc1jDbfJWGo"
+    val API_KEY_PART_4 = "TnyA30FJk"
 }
